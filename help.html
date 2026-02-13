@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help - L Storm</title>
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: url("Hat.png") no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(12, 15, 20, 0.88);
+    z-index: 0;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(0,0,0,0.40);
+    backdrop-filter: blur(6px);
+    z-index: 10;
+  }
+
+  .topbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 10px;
+    background: rgba(0,0,0,0.25);
+    font-size: 15px;
+  }
+
+  .topbar a:hover { border-color: rgba(255,255,255,0.60); }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 140px 20px 110px;
+  }
+
+  h1 {
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 40px;
+    margin: 0 0 20px;
+  }
+
+  .intro {
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 20px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .panel {
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 0 20px;
+  }
+
+  .country {
+    padding: 22px 0;
+  }
+
+  .country-title {
+    font-weight: bold;
+    font-size: 18px;
+    color: #c8a85d;
+    margin-bottom: 8px;
+  }
+
+  .small {
+    line-height: 1.7;
+    opacity: 0.95;
+  }
+
+  .line {
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+    margin-top: 18px;
+  }
+
+  em { opacity: 0.92; }
+
+  a {
+    color: #c8a85d;
+    text-decoration: none;
+  }
+  a:hover { text-decoration: underline; }
+
+  .footer-card {
+    margin-top: 30px;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  .signature {
+    margin-top: 18px;
+    font-style: italic;
+    font-size: 18px;
+    color: #c8a85d;
+  }
+
+  .back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #c8a85d;
+    color: black;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 20;
+  }
+
+  .back-to-top:hover { filter: brightness(1.1); }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="help.html">Help</a>
+</div>
+
+<div class="content">
+  <h1>Don’t suffer alone.</h1>
+
+  <div class="intro">
+    If you're struggling, please reach out. You don’t have to carry it by yourself.<br><br>
+    In immediate danger? Call your local emergency number.<br>
+    (EU: <strong>112</strong> • UK: <strong>999</strong> • US: <strong>911</strong>)
+  </div>
+
+  <div class="panel">
+
+    <div class="country">
+      <div class="country-title">🇬🇧 United Kingdom</div>
+      <div class="small">
+        If you're struggling, you're not alone. Please reach out.<br>
+        <strong>Samaritans (24/7):</strong> <a href="tel:116123">116 123</a><br>
+        <strong>NHS:</strong> <a href="tel:111">111</a>
+      </div>
+      <div class="line"></div>
+    </div>
+
+    <div class="country">
+      <div class="country-title">🇺🇸 United States</div>
+      <div class="small">
+        If you're struggling, you're not alone. Please reach out.<br>
+        <strong>988 Suicide &amp; Crisis Lifeline:</strong> <a href="tel:988">988</a>
+      </div>
+      <div class="line"></div>
+    </div>
+
+    <div class="country">
+      <div class="country-title">🇩🇰 Denmark</div>
+      <div class="small">
+        <em>Hvis du kæmper, er du ikke alene. Ræk ud efter hjælp.</em><br>
+        <strong>Livslinien:</strong> <a href="tel:70201201">70 201 201</a>
+      </div>
+      <div class="line"></div>
+    </div>
+
+    <div class="country">
+      <div class="country-title">🇫🇷 France</div>
+      <div class="small">
+        <em>Si vous traversez une période difficile, vous n’êtes pas seul. Demandez de l’aide.</em><br>
+        <strong>3114 (numéro national):</strong> <a href="tel:3114">3114</a>
+      </div>
+      <div class="line"></div>
+    </div>
+
+    <div class="country">
+      <div class="country-title">🇸🇪 Sweden</div>
+      <div class="small">
+        <em>Om du kämpar, är du inte ensam. Sök hjälp.</em><br>
+        <strong>Mind (Självmordslinjen):</strong> 90 101
+      </div>
+      <div class="line"></div>
+    </div>
+
+    <div class="country">
+      <div class="country-title">🇩🇪 Germany</div>
+      <div class="small">
+        <em>Wenn du kämpfst, bist du nicht allein. Bitte suche Hilfe.</em><br>
+        <strong>TelefonSeelsorge:</strong> 0800 111 0 111
+      </div>
+      <div class="line"></div>
+    </div>
+
+    <div class="country">
+      <div class="country-title">🇨🇭 Switzerland</div>
+      <div class="small">
+        <em>Wenn du kämpfst, bist du nicht allein. Bitte suche Hilfe.</em><br>
+        <strong>Die Dargebotene Hand:</strong> 143
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-card">
+    <strong>Alcohol support (UK)</strong><br>
+    Drinkline: <a href="tel:03001231110">0300 123 1110</a><br><br>
+
+    <strong>International Support Directory</strong><br>
+    Not in the countries listed above?<br>
+    Find local crisis support worldwide here:<br>
+    <a href="https://www.iasp.info/resources/Crisis_Centres/" target="_blank">
+      International Association for Suicide Prevention Directory
+    </a>
+
+    <div class="signature">
+      Recovery takes time, but you can do it — L Storm
+    </div>
+  </div>
+
+</div>
+
+<button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</body>
+</html>
