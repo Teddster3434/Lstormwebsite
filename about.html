@@ -1,97 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About - L Storm</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - L Storm</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: white;
-      background: url("Hat.png") no-repeat center center fixed;
-      background-size: cover;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: url("Hat.png") no-repeat center center fixed;
+    background-size: cover;
+  }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(12, 15, 20, 0.8);
-      z-index: 0;
-    }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(12, 15, 20, 0.82);
+    z-index: 0;
+  }
 
-    .container {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 120px auto;
-      padding: 20px;
-      background: rgba(0,0,0,0.3);
-      border-radius: 15px;
-    }
+  .topbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(6px);
+    z-index: 10;
+  }
 
-    h1 {
-      text-align: center;
-      letter-spacing: 3px;
-    }
+  .topbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(255,255,255,0.30);
+    border-radius: 10px;
+    background: rgba(0,0,0,0.20);
+    font-size: 15px;
+  }
 
-    p {
-      line-height: 1.6;
-      font-size: 17px;
-    }
+  .topbar a:hover {
+    border-color: rgba(255,255,255,0.60);
+  }
 
-    .nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 15px;
-      text-align: center;
-      background: rgba(0,0,0,0.3);
-      z-index: 3;
-    }
+  .content {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 140px 20px 80px;
+  }
 
-    .nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-      padding: 8px 14px;
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 8px;
-    }
+  h1 {
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 44px;
+    margin-bottom: 20px;
+  }
 
-    .nav a:hover {
-      border-color: rgba(255,255,255,0.6);
-    }
-  </style>
+  .card {
+    background: rgba(0,0,0,0.32);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 16px;
+    padding: 22px;
+    line-height: 1.7;
+    font-size: 17px;
+  }
+
+  .card p {
+    margin-bottom: 18px;
+  }
+
+  .bridge {
+    font-style: italic;
+    text-align: center;
+    margin: 25px 0;
+    opacity: 0.95;
+  }
+</style>
 </head>
 
 <body>
 
-  <div class="nav">
-    <a href="index.html">Home</a>
+<div class="topbar">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Me</a>
+</div>
+
+<div class="content">
+  <h1>About L Storm</h1>
+
+  <div class="card">
+    <p>
+      L Storm was built from some heavy nights and hard lessons.
+      There was a time when everything felt louder in my head than it did in real life.
+      I didn’t always handle it well. I tried to ignore it.
+      I tried to numb it. But avoiding it never fixed it.
+    </p>
+
+    <p>
+      The turning point wasn’t dramatic. It wasn’t a movie moment.
+      It was small. It was quiet.
+      It was choosing to step back instead of stepping further.
+      Choosing to speak instead of staying silent.
+      Choosing to reach out instead of pretending I was fine.
+    </p>
+
+    <div class="bridge">
+      Not the fall — the step back.
+    </div>
+
+    <p>
+      Recovery isn’t easy. It doesn’t happen overnight.
+      It takes uncomfortable conversations.
+      It takes patience. It takes honesty.
+      It takes falling back sometimes and still deciding to keep going.
+    </p>
+
+    <p>
+      But it is possible.
+    </p>
+
+    <p>
+      This music isn’t about pretending to be strong.
+      It’s about being honest when you’re not.
+      It’s about choosing tomorrow, even when today feels heavy.
+      If you’re struggling, reach out to someone you trust.
+      You’re not weak for needing help.
+    </p>
+
+    <p>
+      One Step Down is just the beginning.
+    </p>
   </div>
-
-  <div class="container">
-    <h1>About L Storm</h1>
-
-    <p>
-      L Storm is an emotional alternative music project built around one goal:
-      making the dark feel less lonely.
-    </p>
-
-    <p>
-      The music focuses on survival, choosing help when it’s heavy, and stepping
-      back when the edge feels close. It isn’t about pretending everything is fine —
-      it’s about being honest and still choosing tomorrow.
-    </p>
-
-    <p>
-      One Step Down is the beginning.
-    </p>
-
-  </div>
+</div>
 
 </body>
 </html>
