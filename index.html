@@ -6,47 +6,36 @@
   <title>L Storm</title>
 
   <style>
-    /* Background image always visible */
     body {
       margin: 0;
+      background: #0c0f14;
+      color: #ffffff;
       font-family: Arial, sans-serif;
-      color: white;
       text-align: center;
-
-      background: url("Hat.png") no-repeat center center fixed;
-      background-size: cover;
     }
 
-    /* Dark overlay so text is readable */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(12, 15, 20, 0.78);
-      z-index: 0;
-    }
-
-    /* Warning screen */
+    /* Warning overlay */
     #warning {
       position: fixed;
       inset: 0;
+      background: #0c0f14;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 24px;
-      z-index: 2;
+      z-index: 9999;
     }
 
     #warning h2 {
-      margin: 0 0 10px;
-      font-size: 26px;
+      margin: 0 0 10px 0;
+      font-size: 24px;
     }
 
     #warning p {
       margin: 0;
-      opacity: 0.95;
       line-height: 1.4;
+      opacity: 0.9;
     }
 
     button {
@@ -63,60 +52,46 @@
       filter: brightness(1.06);
     }
 
-    /* Main site content */
+    /* Main content hidden until Continue */
     #mainContent {
       display: none;
-      position: relative;
-      z-index: 2;
-      padding: 120px 18px 60px;
+      opacity: 0;
+      transition: opacity 700ms ease;
+      padding: 90px 18px 40px;
+    }
+
+    .logo {
+      width: 280px;
+      max-width: 80vw;
+      margin: 20px auto 10px;
+      display: block;
     }
 
     h1 {
-      font-size: 48px;
+      margin: 14px 0 6px;
       letter-spacing: 4px;
-      margin: 0;
+      font-size: 44px;
     }
 
     .tagline {
-      margin-top: 10px;
+      margin: 0;
       color: #c8a85d;
-      font-size: 18px;
-    }
-
-    .links a {
-      display: inline-block;
-      margin: 14px 10px 0;
-      color: white;
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 10px 16px;
-      border-radius: 10px;
-      background: rgba(0,0,0,0.25);
-    }
-
-    .links a:hover {
-      border-color: rgba(255,255,255,0.45);
+      opacity: 0.95;
     }
   </style>
 </head>
 
 <body>
-  <!-- Warning overlay -->
   <div id="warning">
     <h2>Woah there, cowboy 🤠</h2>
     <p>Please note: this site contains strong language.<br>Listener discretion advised.</p>
     <button id="continueBtn" type="button">Continue</button>
   </div>
 
-  <!-- Main content -->
   <div id="mainContent">
+    <img src="Hat.png" class="logo" alt="L Storm Logo">
     <h1>L STORM</h1>
-    <div class="tagline">One Step Down</div>
-
-    <div class="links">
-      <a href="#" target="_blank">YouTube</a>
-      <a href="#" target="_blank">Spotify</a>
-    </div>
+    <p class="tagline">One Step Down</p>
   </div>
 
   <script>
@@ -125,9 +100,16 @@
     const btn = document.getElementById("continueBtn");
 
     btn.addEventListener("click", () => {
+      // Hide warning
       warning.style.display = "none";
+
+      // Show main + fade in
       main.style.display = "block";
+      requestAnimationFrame(() => {
+        main.style.opacity = "1";
+      });
     });
   </script>
 </body>
 </html>
+
