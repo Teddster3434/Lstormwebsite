@@ -3,13 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Links - L Storm</title>
-
+<title>Official Links - L Storm</title>
 <link rel="icon" type="image/png" href="favicon.png">
 
 <style>
-  html { scroll-behavior: smooth; }
-
   body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -30,11 +27,11 @@
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 14px 16px;
+    padding: 14px;
     display: flex;
     justify-content: center;
     gap: 12px;
-    background: rgba(0,0,0,0.40);
+    background: rgba(0,0,0,0.4);
     backdrop-filter: blur(6px);
     z-index: 100;
   }
@@ -49,21 +46,29 @@
     font-size: 15px;
   }
 
-  .topbar a:hover { border-color: rgba(255,255,255,0.6); }
+  .topbar a:hover {
+    border-color: rgba(255,255,255,0.6);
+  }
 
   .content {
     position: relative;
     z-index: 2;
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
     padding: 160px 20px 80px;
     text-align: center;
   }
 
   h1 {
-    font-size: 42px;
+    font-size: 40px;
     letter-spacing: 3px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
+  }
+
+  .notice {
+    color: #c8a85d;
+    margin-bottom: 35px;
+    font-size: 15px;
   }
 
   .link-button {
@@ -84,9 +89,10 @@
     border-color: rgba(255,255,255,0.6);
   }
 
-  .coming-soon {
-    opacity: 0.6;
-    cursor: default;
+  .official {
+    margin-top: 40px;
+    font-size: 14px;
+    opacity: 0.7;
   }
 
 </style>
@@ -102,7 +108,11 @@
 </div>
 
 <div class="content">
-  <h1>Connect with L Storm</h1>
+  <h1>Official Links</h1>
+
+  <div class="notice">
+    These are the ONLY official L Storm accounts and communities.
+  </div>
 
   <a href="https://www.tiktok.com/@lstormmusic" class="link-button" target="_blank">
     TikTok
@@ -112,10 +122,13 @@
     YouTube
   </a>
 
-  <div class="link-button coming-soon">
-    Discord — Coming Soon
-  </div>
+  <a href="https://discord.gg/Yhj9Jrzs2X" class="link-button" target="_blank">
+    Join the Storm Shelter (Discord)
+  </a>
 
+  <div class="official">
+    If it’s not listed here, it is not official.
+  </div>
 </div>
 
 </body>
