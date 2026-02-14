@@ -53,48 +53,95 @@
   .content {
     position: relative;
     z-index: 2;
-    max-width: 650px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 160px 20px 80px;
-    text-align: center;
   }
 
   h1 {
+    text-align: center;
     font-size: 40px;
     letter-spacing: 3px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   .notice {
+    text-align: center;
     color: #c8a85d;
-    margin-bottom: 35px;
-    font-size: 15px;
+    margin-bottom: 34px;
   }
 
-  .link-button {
-    display: block;
-    margin: 15px 0;
-    padding: 15px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-size: 18px;
-    border: 1px solid rgba(255,255,255,0.25);
+  .box {
     background: rgba(0,0,0,0.35);
-    color: white;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 22px;
+    line-height: 1.6;
     transition: 0.2s ease;
   }
 
-  .link-button:hover {
-    transform: translateY(-3px);
+  .box:hover {
+    border-color: rgba(200,168,93,0.75);
+    box-shadow: 0 0 18px rgba(200,168,93,0.12);
+    transform: translateY(-2px);
+  }
+
+  .box h2 {
+    margin: 0 0 8px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .icon {
+    width: 22px;
+    height: 22px;
+    display: inline-grid;
+    place-items: center;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    background: rgba(0,0,0,0.25);
+    font-size: 14px;
+  }
+
+  .box p {
+    margin: 10px 0 15px;
+    opacity: 0.9;
+  }
+
+  .btnrow {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .box a, .box .disabled {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    background: rgba(0,0,0,0.25);
+  }
+
+  .box a:hover {
     border-color: rgba(255,255,255,0.6);
   }
 
-  .official {
-    margin-top: 40px;
+  .disabled {
+    opacity: 0.55;
+    cursor: default;
+  }
+
+  .footer-note {
+    text-align: center;
+    margin-top: 34px;
     font-size: 14px;
     opacity: 0.7;
   }
-
 </style>
 </head>
 
@@ -114,20 +161,72 @@
     These are the ONLY official L Storm accounts and communities.
   </div>
 
-  <a href="https://www.tiktok.com/@lstormmusic" class="link-button" target="_blank">
-    TikTok
-  </a>
+  <div class="box">
+    <h2><span class="icon">TT</span> TikTok</h2>
+    <p>Behind the scenes, writing clips, raw moments and updates as the journey builds.</p>
+    <div class="btnrow">
+      <a href="https://www.tiktok.com/@lstormmusic" target="_blank" rel="noopener">Visit TikTok</a>
+    </div>
+  </div>
 
-  <a href="https://www.youtube.com/@LStormmusic" class="link-button" target="_blank">
-    YouTube
-  </a>
+  <div class="box">
+    <h2><span class="icon">YT</span> YouTube</h2>
+    <p>Official uploads, acoustic sessions, and longer form content from L Storm.</p>
+    <div class="btnrow">
+      <a href="https://www.youtube.com/@LStormmusic" target="_blank" rel="noopener">Visit YouTube</a>
+    </div>
+  </div>
 
-  <a href="https://discord.gg/Yhj9Jrzs2X" class="link-button" target="_blank">
-    Join the Storm Shelter (Discord)
-  </a>
+  <div class="box">
+    <h2><span class="icon">DS</span> Storm Shelter (Discord)</h2>
+    <p>A safe, structured community built around music, recovery, and real conversation.</p>
+    <div class="btnrow">
+      <a href="https://discord.gg/Yhj9Jrzs2X" target="_blank" rel="noopener">Join the Discord</a>
+    </div>
+  </div>
 
-  <div class="official">
-    If it’s not listed here, it is not official.
+  <div class="box">
+    <h2><span class="icon">SP</span> Spotify</h2>
+    <p>Official releases will appear here as soon as they drop.</p>
+    <div class="btnrow">
+      <span class="disabled">Releases Coming Soon</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2><span class="icon">AM</span> Apple Music</h2>
+    <p>Streaming links will be added here when the first release goes live.</p>
+    <div class="btnrow">
+      <span class="disabled">Releases Coming Soon</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2><span class="icon">YM</span> YouTube Music</h2>
+    <p>Music releases will show here once distribution is active.</p>
+    <div class="btnrow">
+      <span class="disabled">Releases Coming Soon</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2><span class="icon">ME</span> Merch</h2>
+    <p>Merch is planned — including a version of the famous hat. Updates will be posted here first.</p>
+    <div class="btnrow">
+      <span class="disabled">Merch Coming 2026</span>
+    </div>
+  </div>
+
+  <div class="box">
+    <h2><span class="icon">TO</span> Tour</h2>
+    <p>Live shows will be listed here when dates are announced. One day: O2 and international.</p>
+    <div class="btnrow">
+      <span class="disabled">Tour Coming 2026</span>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    If it is not listed here, it is not official.
   </div>
 </div>
 
