@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>L Storm Login</title>
+
+<style>
+body{
+background:#0b0f14;
+font-family:Arial;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.box{
+border:2px solid gold;
+padding:40px;
+border-radius:12px;
+width:300px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+background:#111;
+border:1px solid #333;
+color:white;
+}
+
+button{
+width:100%;
+padding:10px;
+margin-top:10px;
+background:gold;
+border:none;
+cursor:pointer;
+font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Storm Shelter Login</h2>
+
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="signup()">Create Account</button>
+<button onclick="login()">Login</button>
+
+<p id="message"></p>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyApqAgToblH25qzOy7JcFjQgCthdJW4s_I",
+  authDomain: "l-storm-login.firebaseapp.com",
+  projectId: "l-storm-login",
+  storageBucket: "l-storm-login.firebasestorage.app",
+  messagingSenderId: "530059965170",
+  appId: "1:530059965170:web:6e9f31417a860d30cf966b",
+  measurementId: "G-FRBKL78KMF"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.signup = function(){
+
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+createUserWithEmailAndPassword(auth,email,password)
+.then(()=>{
+document.getElementById("message").innerText="Account created!";
+})
+.catch(error=>{
+document.getElementById("message").innerText=error.message;
+});
+
+}
+
+window.login = function(){
+
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+signInWithEmailAndPassword(auth,email,password)
+.then(()=>{
+document.getElementById("message").innerText="Logged in!";
+})
+.catch(error=>{
+document.getElementById("message").innerText=error.message;
+});
+
+}
+
+</script>
+
+</body>
+</html>
