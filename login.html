@@ -1,164 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Storm Center Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Creation</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: radial-gradient(circle at center, #0a0f1c, #02050a);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: radial-gradient(circle at center, #0a0f1c, #02050a);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
+        .container {
+            position: relative;
+            width: 350px;
+            padding: 50px 30px;
+            border: 1px solid #d4a63a;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            text-align: center;
+            overflow: hidden;
+            height: 500px;
+        }
 
-.container {
-    position: relative;
-    width: 360px;
-    padding: 50px 30px;
-    border: 1px solid #d4a63a;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 30px rgba(0,0,0,0.8);
-    text-align: center;
-    overflow: hidden;
-    height: 480px;
-}
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 220px;
+            height: 220px;
+            background: url('Hat.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.15;
+            z-index: 0;
+        }
 
-.container::before {
-    content: "";
-    position: absolute;
-    top: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 240px;
-    height: 240px;
-    background: url('Hat.png') no-repeat center;
-    background-size: contain;
-    opacity: 0.18;
-    z-index: 0;
-}
+        .content {
+            position: relative;
+            z-index: 1;
+            margin-top: 150px;
+        }
 
-.content {
-    position: relative;
-    z-index: 1;
-    margin-top: 140px;
-}
+        h1 {
+            letter-spacing: 5px;
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
 
-h1 {
-    letter-spacing: 5px;
-    font-size: 24px;
-    margin-bottom: 25px;
-}
+        .input-group {
+            margin-bottom: 20px;
+        }
 
-.input-group {
-    margin-bottom: 15px;
-}
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background: #0b0f18;
+            color: white;
+            outline: none;
+        }
 
-input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 5px;
-    border: 1px solid #444;
-    background: #0b0f18;
-    color: white;
-    outline: none;
-}
+        input:focus {
+            border-color: #d4a63a;
+        }
 
-input:focus {
-    border-color: #d4a63a;
-}
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
 
-.btn {
-    width: 100%;
-    padding: 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin-top: 10px;
-    border: none;
-}
+        .create-btn {
+            background: linear-gradient(90deg, #d4a63a, #f0c35a);
+            color: black;
+        }
 
-.login-btn {
-    background: linear-gradient(90deg, #d4a63a, #f0c35a);
-    color: black;
-}
+        .create-btn:hover {
+            opacity: 0.9;
+        }
 
-.create-link {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #d4a63a;
-    cursor: pointer;
-    display: block;
-}
+        .back-link {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #d4a63a;
+            cursor: pointer;
+            display: block;
+        }
 
-.create-link:hover {
-    text-decoration: underline;
-}
-</style>
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-
 <body>
-
-<div class="container">
-    <div class="content">
-        <h1>STORM CENTER</h1>
-
-        <div class="input-group">
-            <input type="email" id="email" placeholder="Email">
+    <div class="container">
+        <div class="content">
+            <h1>STORM CENTER</h1>
+            <h2>Create Account</h2>
+            <div class="input-group">
+                <input type="email" placeholder="Email" id="email">
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Password" id="password">
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Confirm Password" id="confirmPassword">
+            </div>
+            <button class="btn create-btn">CREATE ACCOUNT</button>
+            <span class="back-link" onclick="window.location.href='login.html'">
+                Back to Login
+            </span>
         </div>
-
-        <div class="input-group">
-            <input type="password" id="password" placeholder="Password">
-        </div>
-
-        <button class="btn login-btn">LOGIN</button>
-
-        <span class="create-link" onclick="window.location.href='accountcreation.html'">
-            Create an account
-        </span>
     </div>
-</div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyAPJQWcG8s94SLzBsqqCc90c_qLkDK0UGc",
+            authDomain: "storm-site-login.firebaseapp.com",
+            projectId: "storm-site-login",
+            storageBucket: "storm-site-login.firebasestorage.app",
+            messagingSenderId: "1047191602667",
+            appId: "1:1047191602667:web:002ab34b02ab84674185ae"
+        };
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAPJQWcG8s94SLzBsqqCc90c_qLkDK0UGc",
-  authDomain: "storm-site-login.firebaseapp.com",
-  projectId: "storm-site-login",
-  storageBucket: "storm-site-login.firebasestorage.app",
-  messagingSenderId: "1047191602667",
-  appId: "1:1047191602667:web:002ab34b02ab84674185ae"
-};
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+        document.querySelector(".create-btn").addEventListener("click", () => {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
 
-// LOGIN
-document.querySelector(".login-btn").addEventListener("click", () => {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
 
-    signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-        alert("Logged in!");
-        // later we redirect here
-        // window.location.href = "dashboard.html";
-    })
-    .catch((error) => {
-        alert(error.message);
-    });
-});
-</script>
-
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(() => {
+                    alert("Account created successfully!");
+                    window.location.href = "login.html";
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        });
+    </script>
 </body>
 </html>
