@@ -1,114 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>L Storm Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Storm Center Login</title>
 
 <style>
-body{
-background:#0b0f14;
-font-family:Arial;
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-}
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: radial-gradient(circle at center, #0a0f1c, #02050a);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
 
-.box{
-border:2px solid gold;
-padding:40px;
-border-radius:12px;
-width:300px;
-text-align:center;
-}
+    .container {
+        position: relative;
+        width: 350px;
+        padding: 40px 30px;
+        border: 1px solid #d4a63a;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 30px rgba(0,0,0,0.8);
+        text-align: center;
+        overflow: hidden;
+    }
 
-input{
-width:100%;
-padding:10px;
-margin:10px 0;
-background:#111;
-border:1px solid #333;
-color:white;
-}
+    /* Background hat */
+    .container::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 220px;
+        height: 220px;
+        background: url('Hat.png') no-repeat center;
+        background-size: contain;
+        opacity: 0.15;
+        z-index: 0;
+    }
 
-button{
-width:100%;
-padding:10px;
-margin-top:10px;
-background:gold;
-border:none;
-cursor:pointer;
-font-weight:bold;
-}
+    .content {
+        position: relative;
+        z-index: 1;
+    }
+
+    h1 {
+        letter-spacing: 5px;
+        font-size: 22px;
+        margin-bottom: 25px;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 5px;
+        border: 1px solid #444;
+        background: #0b0f18;
+        color: white;
+        outline: none;
+    }
+
+    input:focus {
+        border-color: #d4a63a;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-top: 10px;
+    }
+
+    .login-btn {
+        background: linear-gradient(90deg, #d4a63a, #f0c35a);
+        color: black;
+    }
+
+    .login-btn:hover {
+        opacity: 0.9;
+    }
+
+    .create-btn {
+        background: transparent;
+        border: 1px solid #d4a63a;
+        color: #d4a63a;
+    }
+
+    .create-btn:hover {
+        background: #d4a63a;
+        color: black;
+    }
 </style>
 
 </head>
-
 <body>
 
-<div class="box">
+<div class="container">
+    <div class="content">
+        <h1>STORM CENTER</h1>
 
-<h2>Storm Shelter Login</h2>
+        <div class="input-group">
+            <input type="email" placeholder="Email" id="email">
+        </div>
 
-<input id="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
+        <div class="input-group">
+            <input type="password" placeholder="Password" id="password">
+        </div>
 
-<button onclick="signup()">Create Account</button>
-<button onclick="login()">Login</button>
-
-<p id="message"></p>
-
+        <button class="btn login-btn">LOGIN</button>
+        <button class="btn create-btn">CREATE ACCOUNT</button>
+    </div>
 </div>
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyApqAgToblH25qzOy7JcFjQgCthdJW4s_I",
-  authDomain: "l-storm-login.firebaseapp.com",
-  projectId: "l-storm-login",
-  storageBucket: "l-storm-login.firebasestorage.app",
-  messagingSenderId: "530059965170",
-  appId: "1:530059965170:web:6e9f31417a860d30cf966b",
-  measurementId: "G-FRBKL78KMF"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-window.signup = function(){
-
-let email = document.getElementById("email").value;
-let password = document.getElementById("password").value;
-
-createUserWithEmailAndPassword(auth,email,password)
-.then(()=>{
-document.getElementById("message").innerText="Account created!";
-})
-.catch(error=>{
-document.getElementById("message").innerText=error.message;
-});
-
-}
-
-window.login = function(){
-
-let email = document.getElementById("email").value;
-let password = document.getElementById("password").value;
-
-signInWithEmailAndPassword(auth,email,password)
-.then(()=>{
-document.getElementById("message").innerText="Logged in!";
-})
-.catch(error=>{
-document.getElementById("message").innerText=error.message;
-});
-
-}
-
-</script>
 
 </body>
 </html>
