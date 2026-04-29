@@ -46,6 +46,26 @@
     transform: translateY(-2px);
   }
 
+  /* LOGIN BUTTON (added) */
+  .login-btn{
+    position:absolute;
+    right:16px;
+    top:50%;
+    transform: translateY(-50%);
+  }
+  .login-btn img{
+    width:36px;
+    height:36px;
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,0.25);
+    background: rgba(0,0,0,0.25);
+    padding:5px;
+    cursor:pointer;
+  }
+  .login-btn img:hover{
+    border-color: rgba(255,255,255,0.6);
+  }
+
   #warning{
     position: fixed; inset:0;
     display:none;
@@ -119,6 +139,11 @@
   <a href="about.html">About</a>
   <a href="help.html">Help</a>
   <a href="links.html">Links</a>
+
+  <!-- LOGIN BUTTON -->
+  <a href="login.html" class="login-btn">
+    <img src="login.png" alt="Login">
+  </a>
 </div>
 
 <div id="warning">
@@ -169,4 +194,5 @@
 </script>
 
 </body>
+</html>
 </html>
