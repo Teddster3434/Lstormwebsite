@@ -25,9 +25,7 @@ body {
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(10px);
-    box-shadow: 0 0 30px rgba(0,0,0,0.8);
     text-align: center;
-    overflow: hidden;
     height: 520px;
 }
 
@@ -41,49 +39,31 @@ body {
     height: 240px;
     background: url('Hat.png') no-repeat center;
     background-size: contain;
-    opacity: 0.18;
-    z-index: 0;
+    opacity: 0.15;
 }
 
 .content {
     position: relative;
-    z-index: 1;
     margin-top: 130px;
-}
-
-h1 {
-    letter-spacing: 5px;
-    font-size: 22px;
-    margin-bottom: 20px;
-}
-
-.input-group {
-    margin-bottom: 12px;
 }
 
 input {
     width: 100%;
     padding: 12px;
+    margin-bottom: 12px;
     border-radius: 5px;
     border: 1px solid #444;
     background: #0b0f18;
     color: white;
-    outline: none;
-}
-
-input:focus {
-    border-color: #d4a63a;
 }
 
 .btn {
     width: 100%;
     padding: 12px;
     border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin-top: 10px;
     border: none;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 .create-btn {
@@ -91,15 +71,11 @@ input:focus {
     color: black;
 }
 
-.back-btn {
-    background: transparent;
-    border: 1px solid #d4a63a;
+.link {
+    margin-top: 15px;
+    display: block;
     color: #d4a63a;
-}
-
-.back-btn:hover {
-    background: #d4a63a;
-    color: black;
+    cursor: pointer;
 }
 </style>
 </head>
@@ -107,24 +83,21 @@ input:focus {
 <body>
 
 <div class="container">
-    <div class="content">
-        <h1>CREATE ACCOUNT</h1>
+<div class="content">
 
-        <div class="input-group">
-            <input type="email" id="email" placeholder="Email">
-        </div>
+<h2>CREATE ACCOUNT</h2>
 
-        <div class="input-group">
-            <input type="password" id="password" placeholder="Password">
-        </div>
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+<input type="password" id="confirm" placeholder="Confirm Password">
 
-        <div class="input-group">
-            <input type="password" id="confirmPassword" placeholder="Confirm Password">
-        </div>
+<button class="btn create-btn">CREATE ACCOUNT</button>
 
-        <button class="btn create-btn">CREATE ACCOUNT</button>
-        <button class="btn back-btn" onclick="window.location.href='login.html'">BACK TO LOGIN</button>
-    </div>
+<span class="link" onclick="window.location.href='login.html'">
+Back to Login
+</span>
+
+</div>
 </div>
 
 <script type="module">
@@ -132,12 +105,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/fireba
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAPJQWcG8s94SLzBsqqCc90c_qLkDK0UGc",
+  apiKey: "YOUR_API_KEY_HERE",
   authDomain: "storm-site-login.firebaseapp.com",
   projectId: "storm-site-login",
-  storageBucket: "storm-site-login.firebasestorage.app",
-  messagingSenderId: "1047191602667",
-  appId: "1:1047191602667:web:002ab34b02ab84674185ae"
+  appId: "YOUR_APP_ID"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -146,26 +117,17 @@ const auth = getAuth(app);
 document.querySelector(".create-btn").addEventListener("click", () => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+    const confirm = document.getElementById("confirm").value;
 
-    if (password !== confirmPassword) {
-        alert("Passwords do not match!");
-        return;
-    }
-
-    if (password.length < 6) {
-        alert("Password must be at least 6 characters.");
-        return;
-    }
+    if (password !== confirm) return alert("Passwords don't match");
+    if (password.length < 6) return alert("Password must be at least 6 characters");
 
     createUserWithEmailAndPassword(auth, email, password)
     .then(() => {
-        alert("Account created successfully!");
+        alert("Account created!");
         window.location.href = "login.html";
     })
-    .catch((error) => {
-        alert(error.message);
-    });
+    .catch(err => alert(err.message));
 });
 </script>
 
