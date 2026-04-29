@@ -31,7 +31,6 @@ body {
     height: 480px;
 }
 
-/* Hat background */
 .container::before {
     content: "";
     position: absolute;
@@ -92,19 +91,20 @@ input:focus {
     color: black;
 }
 
-.create-btn {
-    background: transparent;
-    border: 1px solid #d4a63a;
+.create-link {
+    margin-top: 15px;
+    font-size: 14px;
     color: #d4a63a;
+    cursor: pointer;
+    display: block;
 }
 
-.create-btn:hover {
-    background: #d4a63a;
-    color: black;
+.create-link:hover {
+    text-decoration: underline;
 }
 </style>
-
 </head>
+
 <body>
 
 <div class="container">
@@ -120,14 +120,16 @@ input:focus {
         </div>
 
         <button class="btn login-btn">LOGIN</button>
-        <button class="btn create-btn">CREATE ACCOUNT</button>
+
+        <span class="create-link" onclick="window.location.href='accountcreation.html'">
+            Create an account
+        </span>
     </div>
 </div>
 
-<!-- ✅ FIREBASE SCRIPT -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAPJQWcG8s94SLzBsqqCc90c_qLkDK0UGc",
@@ -149,20 +151,8 @@ document.querySelector(".login-btn").addEventListener("click", () => {
     signInWithEmailAndPassword(auth, email, password)
     .then(() => {
         alert("Logged in!");
-    })
-    .catch((error) => {
-        alert(error.message);
-    });
-});
-
-// CREATE ACCOUNT
-document.querySelector(".create-btn").addEventListener("click", () => {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    createUserWithEmailAndPassword(auth, email, password)
-    .then(() => {
-        alert("Account created!");
+        // later we redirect here
+        // window.location.href = "dashboard.html";
     })
     .catch((error) => {
         alert(error.message);
@@ -170,7 +160,5 @@ document.querySelector(".create-btn").addEventListener("click", () => {
 });
 </script>
 
-</body>
-</html>
 </body>
 </html>
