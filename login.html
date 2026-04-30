@@ -75,7 +75,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/fireba
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyBGkGnNraXonGNCMH0kQH0HcdgVQeDDqjI",
   authDomain: "storm-center-5f5fd.firebaseapp.com",
   projectId: "storm-center-5f5fd"
 };
@@ -90,10 +90,10 @@ function msg(text, type) {
 }
 
 window.login = function() {
-    const email = email.value;
-    const password = password.value;
+    const emailInput = document.getElementById("email").value;
+    const passwordInput = document.getElementById("password").value;
 
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, emailInput, passwordInput)
     .then(() => {
         msg("Welcome back ⚡", "success");
 
@@ -104,7 +104,9 @@ window.login = function() {
     .catch(err => msg(err.message, "error"));
 };
 
-window.goSignup = () => window.location.href = "accountcreation.html";
+window.goSignup = function() {
+    window.location.href = "AccountCreation.html"; // ✅ CAPITAL A FIX
+};
 </script>
 
 </body>
