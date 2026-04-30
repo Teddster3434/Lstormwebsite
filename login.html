@@ -3,137 +3,143 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Storm Center Login</title>
+<title>Create Account - Storm Center</title>
 
 <style>
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: radial-gradient(circle at center, #0a0f1c, #02050a);
-    height: 100vh;
+    font-family: Arial;
+    background: radial-gradient(circle, #0a0f1c, #02050a);
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     color: white;
 }
 
 .container {
-    position: relative;
-    width: 360px;
-    padding: 50px 30px;
+    width: 350px;
+    padding: 30px;
+    background: rgba(0,0,0,0.7);
     border: 1px solid #d4a63a;
     border-radius: 10px;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(10px);
     text-align: center;
-}
-
-.container::before {
-    content: "";
-    position: absolute;
-    top: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 220px;
-    height: 220px;
-    background: url('Hat.png') no-repeat center;
-    background-size: contain;
-    opacity: 0.15;
-}
-
-.content {
-    position: relative;
-    margin-top: 120px;
-}
-
-h1 {
-    letter-spacing: 4px;
-    margin-bottom: 20px;
 }
 
 input {
     width: 100%;
     padding: 12px;
-    margin-bottom: 12px;
-    border-radius: 5px;
-    border: 1px solid #444;
+    margin-top: 10px;
     background: #0b0f18;
+    border: 1px solid #444;
     color: white;
 }
 
-.btn {
+button {
     width: 100%;
     padding: 12px;
-    border-radius: 5px;
+    margin-top: 15px;
+    background: #d4a63a;
     border: none;
-    margin-top: 10px;
     cursor: pointer;
     font-weight: bold;
 }
 
-.login-btn {
-    background: linear-gradient(90deg, #d4a63a, #f0c35a);
-    color: black;
+#message {
+    margin-top: 15px;
 }
 
-.link {
-    margin-top: 15px;
-    display: block;
-    color: #d4a63a;
-    cursor: pointer;
-}
+.success { color: #4caf50; }
+.error { color: #ff4d4d; }
 </style>
 </head>
 
 <body>
 
 <div class="container">
-<div class="content">
 
-<h1>STORM CENTER</h1>
+<h2>Storm Center</h2>
 
+<!-- STEP 1 -->
+<div id="step1">
 <input type="email" id="email" placeholder="Email">
 <input type="password" id="password" placeholder="Password">
-
-<button class="btn login-btn" onclick="login()">LOGIN</button>
-
-<!-- ✅ FIXED LINK HERE -->
-<span class="link" onclick="window.location.href='Accountcreation.html'">
-Create an Account
-</span>
-
+<button onclick="signup()">Create Account</button>
+<p onclick="goLogin()" style="cursor:pointer;color:#d4a63a;">Already have an account?</p>
 </div>
+
+<!-- STEP 2 -->
+<div id="step2" style="display:none;">
+<p>You know my name… now what’s your name?</p>
+<input type="text" id="name" placeholder="Your Name">
+<button onclick="saveName()">Finish</button>
+</div>
+
+<div id="message"></div>
+
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBGkGnNraXonGNCMH0kQH0HcdgVQeDDqjI",
+  apiKey: "YOUR_API_KEY",
   authDomain: "storm-center-5f5fd.firebaseapp.com",
   projectId: "storm-center-5f5fd",
   storageBucket: "storm-center-5f5fd.firebasestorage.app",
   messagingSenderId: "371213361425",
-  appId: "1:371213361425:web:089e296a06e7aef929acb0",
-  measurementId: "G-1S65R6PFE7"
+  appId: "1:371213361425:web:089e296a06e7aef929acb0"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-window.login = function() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+let currentUser = null;
 
-    signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-        alert("Logged in!");
+function msg(text, type) {
+    const el = document.getElementById("message");
+    el.className = type;
+    el.innerText = text;
+}
+
+window.signup = function() {
+    const email = email.value;
+    const password = password.value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((cred) => {
+        currentUser = cred.user;
+        msg("Account created ⚡", "success");
+
+        step1.style.display = "none";
+        step2.style.display = "block";
     })
-    .catch((error) => {
-        alert(error.message);
-    });
+    .catch(err => msg(err.message, "error"));
 };
+
+window.saveName = function() {
+    const name = document.getElementById("name").value;
+
+    if (!name) return msg("Enter a name", "error");
+
+    setDoc(doc(db, "users", currentUser.uid), {
+        email: currentUser.email,
+        name: name
+    })
+    .then(() => {
+        msg("Welcome aboard 🎉", "success");
+
+        setTimeout(() => {
+            window.location.href = "dashboard.html";
+        }, 1000);
+    })
+    .catch(err => msg(err.message, "error"));
+};
+
+window.goLogin = () => window.location.href = "login.html";
 </script>
 
 </body>
