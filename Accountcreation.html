@@ -3,40 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Storm Center - Create Account</title>
+<title>Create Account - Storm Center</title>
 
 <style>
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: radial-gradient(circle at center, #0a0f1c, #02050a);
-    height: 100vh;
+    font-family: Arial;
+    background: radial-gradient(circle, #0a0f1c, #02050a);
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     color: white;
 }
 
 .container {
     width: 350px;
-    padding: 40px 30px;
+    padding: 30px;
+    background: rgba(0,0,0,0.7);
     border: 1px solid #d4a63a;
     border-radius: 10px;
-    background: rgba(0,0,0,0.7);
     text-align: center;
-}
-
-h1 {
-    letter-spacing: 3px;
 }
 
 input {
     width: 100%;
     padding: 12px;
     margin-top: 10px;
-    border-radius: 5px;
-    border: 1px solid #444;
     background: #0b0f18;
+    border: 1px solid #444;
     color: white;
 }
 
@@ -44,25 +39,18 @@ button {
     width: 100%;
     padding: 12px;
     margin-top: 15px;
+    background: #d4a63a;
     border: none;
-    border-radius: 5px;
-    font-weight: bold;
     cursor: pointer;
-    background: linear-gradient(90deg, #d4a63a, #f0c35a);
+    font-weight: bold;
 }
 
 #message {
     margin-top: 15px;
-    font-weight: bold;
 }
 
-.success {
-    color: #4caf50;
-}
-
-.error {
-    color: #ff4d4d;
-}
+.success { color: #4caf50; }
+.error { color: #ff4d4d; }
 </style>
 </head>
 
@@ -70,20 +58,21 @@ button {
 
 <div class="container">
 
-<h1>STORM CENTER</h1>
+<h2>Storm Center</h2>
 
 <!-- STEP 1 -->
 <div id="step1">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="signup()">CREATE ACCOUNT</button>
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+<button onclick="signup()">Create Account</button>
+<p onclick="goLogin()" style="cursor:pointer;color:#d4a63a;">Already have an account?</p>
 </div>
 
 <!-- STEP 2 -->
 <div id="step2" style="display:none;">
-    <p>You know my name… now what’s your name?</p>
-    <input type="text" id="name" placeholder="Your Name">
-    <button onclick="saveName()">FINISH</button>
+<p>You know my name… now what’s your name?</p>
+<input type="text" id="name" placeholder="Your Name">
+<button onclick="saveName()">Finish</button>
 </div>
 
 <div id="message"></div>
@@ -96,7 +85,7 @@ import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBGkGnNraXonGNCMH0kQH0HcdgVQeDDqjI",
+  apiKey: "YOUR_API_KEY",
   authDomain: "storm-center-5f5fd.firebaseapp.com",
   projectId: "storm-center-5f5fd",
   storageBucket: "storm-center-5f5fd.firebasestorage.app",
@@ -110,55 +99,47 @@ const db = getFirestore(app);
 
 let currentUser = null;
 
-function showMessage(text, type) {
-    const msg = document.getElementById("message");
-    msg.className = type;
-    msg.innerText = text;
+function msg(text, type) {
+    const el = document.getElementById("message");
+    el.className = type;
+    el.innerText = text;
 }
 
-// STEP 1 SIGNUP
 window.signup = function() {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const email = email.value;
+    const password = password.value;
 
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        currentUser = userCredential.user;
+    .then((cred) => {
+        currentUser = cred.user;
+        msg("Account created ⚡", "success");
 
-        showMessage("Nice one ⚡ account created!", "success");
-
-        document.getElementById("step1").style.display = "none";
-        document.getElementById("step2").style.display = "block";
+        step1.style.display = "none";
+        step2.style.display = "block";
     })
-    .catch((error) => {
-        showMessage(error.message, "error");
-    });
+    .catch(err => msg(err.message, "error"));
 };
 
-// STEP 2 SAVE NAME
 window.saveName = function() {
     const name = document.getElementById("name").value;
 
-    if (!name) {
-        showMessage("Oi, we need your name 😄", "error");
-        return;
-    }
+    if (!name) return msg("Enter a name", "error");
 
     setDoc(doc(db, "users", currentUser.uid), {
         email: currentUser.email,
         name: name
     })
     .then(() => {
-        showMessage("All set 🎉 Welcome aboard!", "success");
+        msg("Welcome aboard 🎉", "success");
 
         setTimeout(() => {
-            window.location.href = "login.html";
-        }, 1500);
+            window.location.href = "dashboard.html";
+        }, 1000);
     })
-    .catch((error) => {
-        showMessage(error.message, "error");
-    });
+    .catch(err => msg(err.message, "error"));
 };
+
+window.goLogin = () => window.location.href = "login.html";
 </script>
 
 </body>
