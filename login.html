@@ -26,7 +26,6 @@ body {
     background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(10px);
     text-align: center;
-    height: 460px;
 }
 
 .container::before {
@@ -35,8 +34,8 @@ body {
     top: -80px;
     left: 50%;
     transform: translateX(-50%);
-    width: 240px;
-    height: 240px;
+    width: 220px;
+    height: 220px;
     background: url('Hat.png') no-repeat center;
     background-size: contain;
     opacity: 0.15;
@@ -44,13 +43,18 @@ body {
 
 .content {
     position: relative;
-    margin-top: 140px;
+    margin-top: 120px;
+}
+
+h1 {
+    letter-spacing: 4px;
+    margin-bottom: 20px;
 }
 
 input {
     width: 100%;
     padding: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     border-radius: 5px;
     border: 1px solid #444;
     background: #0b0f18;
@@ -64,6 +68,7 @@ input {
     border: none;
     margin-top: 10px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .login-btn {
@@ -85,14 +90,15 @@ input {
 <div class="container">
 <div class="content">
 
-<h2>STORM CENTER</h2>
+<h1>STORM CENTER</h1>
 
 <input type="email" id="email" placeholder="Email">
 <input type="password" id="password" placeholder="Password">
 
-<button class="btn login-btn">LOGIN</button>
+<button class="btn login-btn" onclick="login()">LOGIN</button>
 
-<span class="link" onclick="window.location.href='accountcreation.html'">
+<!-- ✅ FIXED LINK HERE -->
+<span class="link" onclick="window.location.href='Accountcreation.html'">
 Create an Account
 </span>
 
@@ -104,29 +110,30 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/fireba
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY_HERE",
-  authDomain: "storm-site-login.firebaseapp.com",
-  projectId: "storm-site-login",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBGkGnNraXonGNCMH0kQH0HcdgVQeDDqjI",
+  authDomain: "storm-center-5f5fd.firebaseapp.com",
+  projectId: "storm-center-5f5fd",
+  storageBucket: "storm-center-5f5fd.firebasestorage.app",
+  messagingSenderId: "371213361425",
+  appId: "1:371213361425:web:089e296a06e7aef929acb0",
+  measurementId: "G-1S65R6PFE7"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-document.querySelector(".login-btn").addEventListener("click", () => {
-    const email = emailInput.value;
-    const password = passwordInput.value;
+window.login = function() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
     signInWithEmailAndPassword(auth, email, password)
     .then(() => {
         alert("Logged in!");
-        // later: window.location.href = "dashboard.html";
     })
-    .catch(err => alert(err.message));
-});
-
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
+    .catch((error) => {
+        alert(error.message);
+    });
+};
 </script>
 
 </body>
