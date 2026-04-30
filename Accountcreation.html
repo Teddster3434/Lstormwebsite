@@ -26,7 +26,6 @@ body {
     background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(10px);
     text-align: center;
-    height: 520px;
 }
 
 .container::before {
@@ -35,8 +34,8 @@ body {
     top: -80px;
     left: 50%;
     transform: translateX(-50%);
-    width: 240px;
-    height: 240px;
+    width: 220px;
+    height: 220px;
     background: url('Hat.png') no-repeat center;
     background-size: contain;
     opacity: 0.15;
@@ -44,7 +43,12 @@ body {
 
 .content {
     position: relative;
-    margin-top: 130px;
+    margin-top: 120px;
+}
+
+h1 {
+    letter-spacing: 4px;
+    margin-bottom: 20px;
 }
 
 input {
@@ -64,6 +68,7 @@ input {
     border: none;
     margin-top: 10px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .create-btn {
@@ -85,13 +90,13 @@ input {
 <div class="container">
 <div class="content">
 
-<h2>CREATE ACCOUNT</h2>
+<h1>CREATE ACCOUNT</h1>
 
 <input type="email" id="email" placeholder="Email">
 <input type="password" id="password" placeholder="Password">
 <input type="password" id="confirm" placeholder="Confirm Password">
 
-<button class="btn create-btn">CREATE ACCOUNT</button>
+<button class="btn create-btn" onclick="signup()">CREATE ACCOUNT</button>
 
 <span class="link" onclick="window.location.href='login.html'">
 Back to Login
@@ -105,30 +110,42 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/fireba
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY_HERE",
-  authDomain: "storm-site-login.firebaseapp.com",
-  projectId: "storm-site-login",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBGkGnNraXonGNCMH0kQH0HcdgVQeDDqjI",
+  authDomain: "storm-center-5f5fd.firebaseapp.com",
+  projectId: "storm-center-5f5fd",
+  storageBucket: "storm-center-5f5fd.firebasestorage.app",
+  messagingSenderId: "371213361425",
+  appId: "1:371213361425:web:089e296a06e7aef929acb0",
+  measurementId: "G-1S65R6PFE7"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-document.querySelector(".create-btn").addEventListener("click", () => {
+window.signup = function() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirm = document.getElementById("confirm").value;
 
-    if (password !== confirm) return alert("Passwords don't match");
-    if (password.length < 6) return alert("Password must be at least 6 characters");
+    if (password !== confirm) {
+        alert("Passwords do not match");
+        return;
+    }
+
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters");
+        return;
+    }
 
     createUserWithEmailAndPassword(auth, email, password)
     .then(() => {
         alert("Account created!");
         window.location.href = "login.html";
     })
-    .catch(err => alert(err.message));
-});
+    .catch((error) => {
+        alert(error.message);
+    });
+};
 </script>
 
 </body>
