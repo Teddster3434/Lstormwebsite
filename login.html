@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create Account - Storm Center</title>
+<title>Login - Storm Center</title>
 
 <style>
 body {
@@ -45,10 +45,7 @@ button {
     font-weight: bold;
 }
 
-#message {
-    margin-top: 15px;
-}
-
+#message { margin-top: 15px; }
 .success { color: #4caf50; }
 .error { color: #ff4d4d; }
 </style>
@@ -60,20 +57,14 @@ button {
 
 <h2>Storm Center</h2>
 
-<!-- STEP 1 -->
-<div id="step1">
 <input type="email" id="email" placeholder="Email">
 <input type="password" id="password" placeholder="Password">
-<button onclick="signup()">Create Account</button>
-<p onclick="goLogin()" style="cursor:pointer;color:#d4a63a;">Already have an account?</p>
-</div>
 
-<!-- STEP 2 -->
-<div id="step2" style="display:none;">
-<p>You know my name… now what’s your name?</p>
-<input type="text" id="name" placeholder="Your Name">
-<button onclick="saveName()">Finish</button>
-</div>
+<button onclick="login()">Login</button>
+
+<p onclick="goSignup()" style="cursor:pointer;color:#d4a63a;">
+Create an account
+</p>
 
 <div id="message"></div>
 
@@ -81,23 +72,16 @@ button {
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "storm-center-5f5fd.firebaseapp.com",
-  projectId: "storm-center-5f5fd",
-  storageBucket: "storm-center-5f5fd.firebasestorage.app",
-  messagingSenderId: "371213361425",
-  appId: "1:371213361425:web:089e296a06e7aef929acb0"
+  projectId: "storm-center-5f5fd"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
-
-let currentUser = null;
 
 function msg(text, type) {
     const el = document.getElementById("message");
@@ -105,41 +89,22 @@ function msg(text, type) {
     el.innerText = text;
 }
 
-window.signup = function() {
+window.login = function() {
     const email = email.value;
     const password = password.value;
 
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((cred) => {
-        currentUser = cred.user;
-        msg("Account created ⚡", "success");
-
-        step1.style.display = "none";
-        step2.style.display = "block";
-    })
-    .catch(err => msg(err.message, "error"));
-};
-
-window.saveName = function() {
-    const name = document.getElementById("name").value;
-
-    if (!name) return msg("Enter a name", "error");
-
-    setDoc(doc(db, "users", currentUser.uid), {
-        email: currentUser.email,
-        name: name
-    })
+    signInWithEmailAndPassword(auth, email, password)
     .then(() => {
-        msg("Welcome aboard 🎉", "success");
+        msg("Welcome back ⚡", "success");
 
         setTimeout(() => {
             window.location.href = "dashboard.html";
-        }, 1000);
+        }, 800);
     })
     .catch(err => msg(err.message, "error"));
 };
 
-window.goLogin = () => window.location.href = "login.html";
+window.goSignup = () => window.location.href = "accountcreation.html";
 </script>
 
 </body>
