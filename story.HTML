@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: radial-gradient(circle at center, #0a0f1c, #02050a);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        .container {
+            position: relative;
+            width: 600px;
+            padding: 40px 30px;
+            border: 1px solid #d4a63a;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            text-align: left;
+            overflow: hidden;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 220px;
+            height: 220px;
+            background: url('Hat.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            letter-spacing: 5px;
+            font-size: 36px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .highlight {
+            color: #d4a63a;
+            font-weight: bold;
+        }
+        a {
+            color: #d4a63a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>Our Story</h1>
+            <p>It all started in a place of silence—when the weight of loneliness and alcohol dependency felt like a heavy storm cloud over me. There were days I couldn’t see past the dark, and I thought I was trapped.</p>
+            <p>But in that moment, when everything seemed lost, I found music. Music was the small spark that cut through the chaos. It gave me peace. It gave me a voice.</p>
+            <p>There were nights I felt so lost, staring at the ceiling, and it was music that kept me afloat. Each note was a step toward hope. And slowly, the storm inside me began to clear.</p>
+            <p>Today, I stand here with a clear heart and a strong spirit, saying: <span class="highlight">Alcohol is never the answer.</span> Every song I create now is a testament to survival, to resilience, and to the belief that we can rebuild ourselves, one step at a time.</p>
+            <p>If you’re reading this, and you feel like the storm inside is too strong, please know: you are never alone. Reach out, speak to someone. Your story is not over.</p>
+            <p><a href="index.html">Back to Home</a></p>
+        </div>
+    </div>
+</body>
+</html>
